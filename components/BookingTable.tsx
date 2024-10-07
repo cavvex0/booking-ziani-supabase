@@ -10,8 +10,10 @@ import { markAsVenu } from "@/actions/markAsVenu";
 import { deleteBooking } from "@/actions/deleteBooking";
 import { createClient } from "@/utils/supabase/client";
 import { useClick } from "@/providers/ClickContext";
+import { useRouter } from "next/navigation";
 
 const BookingTable = () => {
+  const router = useRouter();
   const { clicked, setClicked } = useClick();
   const [bookingData, setBookingData] = useState<
     BookingSchemaTableType[] | null
@@ -52,6 +54,7 @@ const BookingTable = () => {
       setBookingData(filteredData);
     } finally {
       setLoading(false);
+      router.refresh();
     }
   };
   const handleVenu = (id: number) => {
