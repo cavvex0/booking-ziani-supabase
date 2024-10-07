@@ -1,77 +1,54 @@
 "use client";
 import AddSection from "@/sections/AddSection";
 import TableDiv from "./TableDiv";
-import { useEffect, useState } from "react";
-import { BookingSchemaTableType, BookingSchemaType } from "@/schema/bookings";
+import { useState } from "react";
+import { BookingSchemaTableType } from "@/schema/bookings";
 import { format } from "date-fns";
 import { Button } from "./ui/button";
 import { Check, Pen, Trash } from "lucide-react";
 import { markAsVenu } from "@/actions/markAsVenu";
 import { deleteBooking } from "@/actions/deleteBooking";
-import { createClient } from "@/utils/supabase/client";
-import { useClick } from "@/providers/ClickContext";
 import { useRouter } from "next/navigation";
 
-const BookingTable = () => {
+const BookingTable = ({ bookings }: { bookings: BookingSchemaTableType[] }) => {
   const router = useRouter();
-  const { clicked, setClicked } = useClick();
-  const [bookingData, setBookingData] = useState<
-    BookingSchemaTableType[] | null
-  >(null);
-  console.log(bookingData);
-  const [date, setDate] = useState(undefined);
-  const [Showall, setShowall] = useState(false);
+  const [date, setDate] = useState<Date | null>(new Date());
   const [loading, setLoading] = useState(false);
 
-  useEffect(() => {
-    fetchBookings();
-  }, [date, clicked]);
+  const filteredBookings = date
+    ? bookings.filter(
+        (item) =>
+          format(new Date(item.date), "yyyy-MM-dd") ===
+          format(new Date(date), "yyyy-MM-dd")
+      )
+    : bookings;
 
-  const fetchBookings = async () => {
+  const handleShowAll = () => {
     setLoading(true);
-    try {
-      const supabase = createClient();
-      const { data, error } = await supabase
-        .from("bookings")
-        .select("*")
-        .order("date", { ascending: true });
-
-      if (error) {
-        console.log(error);
-        return;
-      }
-
-      if (!data) return;
-
-      const filteredData = date
-        ? data.filter(
-            (item) =>
-              format(new Date(item.date), "yyyy-MM-dd") ===
-              format(new Date(date), "yyyy-MM-dd")
-          )
-        : data;
-
-      setBookingData(filteredData);
-    } finally {
-      setLoading(false);
-      router.refresh();
+    if (date) {
+      setDate(null);
+    } else {
+      setDate(new Date());
     }
+    setLoading(false);
   };
   const handleVenu = (id: number) => {
     markAsVenu(id);
-    setClicked(!clicked);
   };
   const handleDelete = (id: number) => {
     deleteBooking(id);
-    setClicked(!clicked);
   };
-  if (!bookingData) return <div>No bookings found</div>;
+  if (!filteredBookings) return <div>No bookings found</div>;
   return (
     <div className="">
       <div className="max-w-[90rem] mx-auto">
         <div className="border min-h-[600px]">
           <div className="border-b py-4 px-12">
-            <AddSection date={date} setDate={setDate} setShowAll={setShowall} />
+            <AddSection
+              date={date}
+              setDate={setDate}
+              handleShowAll={handleShowAll}
+            />
           </div>
           <div className="grid grid-cols-10 border-b font-semibold text-[15px]">
             <TableDiv>@</TableDiv>
@@ -85,7 +62,7 @@ const BookingTable = () => {
             <TableDiv>Statut</TableDiv>
             <TableDiv>Actions</TableDiv>
           </div>
-          {bookingData.map((item) => (
+          {filteredBookings.map((item) => (
             <div
               className="grid grid-cols-10 border-b py-2 font-jockey text-[17px]"
               key={item.id}

@@ -12,11 +12,15 @@ import { fr } from "date-fns/locale";
 import { CalendarIcon, Trash } from "lucide-react";
 
 type Props = {
-  date: Date | undefined;
+  date: Date | null;
   setDate: any;
-  setShowAll: any;
+  handleShowAll: () => void;
 };
-const AddSection = ({ date, setDate, setShowAll }: Props) => {
+const AddSection = ({
+  date,
+  setDate,
+  handleShowAll,
+}: Props) => {
   return (
     <div className="flex items-center justify-between">
       <Add />
@@ -41,12 +45,11 @@ const AddSection = ({ date, setDate, setShowAll }: Props) => {
           <PopoverContent className="w-auto p-0">
             <Calendar
               mode="single"
-              selected={date}
+              selected={date ? new Date(date) : undefined}
               locale={fr}
               onSelect={(selectedDate: Date | undefined) => {
                 if (selectedDate) {
                   setDate(selectedDate);
-                  setShowAll(false);
                 }
               }}
             />
@@ -61,8 +64,11 @@ const AddSection = ({ date, setDate, setShowAll }: Props) => {
           <Trash size={21} />
         </Button>
       </div>
-      <Button className="bg-blue-700 hover:bg-blue-600 font-jockey text-[17px]">
-        Show All
+      <Button
+        onClick={handleShowAll}
+        className="bg-blue-700 hover:bg-blue-600 font-jockey text-[17px]"
+      >
+        {date ? "Tout afficher" : "Aujour d'hui"}
       </Button>
     </div>
   );

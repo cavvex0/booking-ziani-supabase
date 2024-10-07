@@ -32,12 +32,10 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation } from "@tanstack/react-query";
 import { createBooking } from "@/actions/createBooking";
 import { getUsername } from "@/lib/getUserClient";
-import { useClick } from "@/providers/ClickContext";
 
 const people = ["adam", "hannan", "soraya", "fija", "yassine"];
 
 const Add = () => {
-  const { setClicked, clicked } = useClick();
   const [username, setUsername] = useState<string | null>(null);
 
   const fetchUsername = async () => {
@@ -71,7 +69,6 @@ const Add = () => {
     onSuccess: () => {
       setOpen(false);
       form.reset();
-      setClicked(!clicked);
     },
   });
 

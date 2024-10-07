@@ -1,8 +1,19 @@
 import BookingTable from "@/components/BookingTable";
 import { getUsername } from "@/lib/getUsername";
+import { createClient } from "@/utils/supabase/server";
 
 const Dashboard = async () => {
   const username = await getUsername();
+  const supabase = createClient();
+
+  const { data: bookings } = await supabase
+    .from("bookings")
+    .select("*")
+    .order("date", { ascending: true });
+
+  if (!bookings) {
+    return null;
+  }
 
   return (
     <div className="max-w-[90rem] mx-auto">
@@ -11,7 +22,7 @@ const Dashboard = async () => {
           Bon Retour <span className="capitalize">{username} 👋</span>
         </h1>
       </div>
-      <BookingTable />
+      <BookingTable bookings={bookings} />
     </div>
   );
 };
