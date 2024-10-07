@@ -1,6 +1,7 @@
 import { GeistSans } from "geist/font/sans";
 import "./globals.css";
 import { Jockey_One } from "next/font/google";
+import TanstackProviders from "@/providers/TanstackProvider";
 
 const defaultUrl = process.env.VERCEL_URL
   ? `https://${process.env.VERCEL_URL}`
@@ -28,7 +29,9 @@ export default function RootLayout({
       className={`${GeistSans.className} ${jockey.variable}`}
       suppressHydrationWarning
     >
-      <body className="bg-background text-foreground">{children}</body>
+      <body className="bg-background text-foreground">
+        <TanstackProviders>{children}</TanstackProviders>
+      </body>
     </html>
   );
 }

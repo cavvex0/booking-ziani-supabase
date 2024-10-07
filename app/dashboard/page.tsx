@@ -9,6 +9,11 @@ const Dashboard = async () => {
     .from("bookings")
     .select("*")
     .order("date", { ascending: true });
+
+  if (!bookings) {
+    // Handle the case where bookings is null
+    return <div>No bookings found</div>;
+  }
   return (
     <div className="max-w-[90rem] mx-auto">
       <div className="py-10">
