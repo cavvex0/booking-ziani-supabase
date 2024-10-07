@@ -1,27 +1,68 @@
 "use client";
 import AddSection from "@/sections/AddSection";
 import TableDiv from "./TableDiv";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { BookingSchemaTableType, BookingSchemaType } from "@/schema/bookings";
 import { format } from "date-fns";
 import { Button } from "./ui/button";
 import { Check, Pen, Trash } from "lucide-react";
 import { markAsVenu } from "@/actions/markAsVenu";
 import { deleteBooking } from "@/actions/deleteBooking";
+import { createClient } from "@/utils/supabase/client";
+import { useClick } from "@/providers/ClickContext";
 
-type Props = {
-  bookings: BookingSchemaTableType[];
-};
-const BookingTable = ({ bookings }: Props) => {
+const BookingTable = () => {
+  const { clicked, setClicked } = useClick();
+  const [bookingData, setBookingData] = useState<
+    BookingSchemaTableType[] | null
+  >(null);
+  console.log(bookingData);
   const [date, setDate] = useState(undefined);
   const [Showall, setShowall] = useState(false);
+  const [loading, setLoading] = useState(false);
 
+  useEffect(() => {
+    fetchBookings();
+  }, [date, clicked]);
+
+  const fetchBookings = async () => {
+    setLoading(true);
+    try {
+      const supabase = createClient();
+      const { data, error } = await supabase
+        .from("bookings")
+        .select("*")
+        .order("date", { ascending: true });
+
+      if (error) {
+        console.log(error);
+        return;
+      }
+
+      if (!data) return;
+
+      const filteredData = date
+        ? data.filter(
+            (item) =>
+              format(new Date(item.date), "yyyy-MM-dd") ===
+              format(new Date(date), "yyyy-MM-dd")
+          )
+        : data;
+
+      setBookingData(filteredData);
+    } finally {
+      setLoading(false);
+    }
+  };
   const handleVenu = (id: number) => {
     markAsVenu(id);
+    setClicked(!clicked);
   };
   const handleDelete = (id: number) => {
     deleteBooking(id);
+    setClicked(!clicked);
   };
+  if (!bookingData) return <div>No bookings found</div>;
   return (
     <div className="">
       <div className="max-w-[90rem] mx-auto">
@@ -41,7 +82,7 @@ const BookingTable = ({ bookings }: Props) => {
             <TableDiv>Statut</TableDiv>
             <TableDiv>Actions</TableDiv>
           </div>
-          {bookings.map((item) => (
+          {bookingData.map((item) => (
             <div
               className="grid grid-cols-10 border-b py-2 font-jockey text-[17px]"
               key={item.id}

@@ -31,23 +31,21 @@ import { BookingSchema, BookingSchemaType } from "@/schema/bookings";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation } from "@tanstack/react-query";
 import { createBooking } from "@/actions/createBooking";
-import { useAuth } from "@/providers/AuthProvider";
 import { getUsername } from "@/lib/getUserClient";
+import { useClick } from "@/providers/ClickContext";
 
 const people = ["adam", "hannan", "soraya", "fija", "yassine"];
 
 const Add = () => {
+  const { setClicked, clicked } = useClick();
   const [username, setUsername] = useState<string | null>(null);
 
-  useEffect(() => {
-    const fetchUsername = async () => {
-      const name = await getUsername();
-      setUsername(name);
-      form.setValue("createdBy", name);
-    };
-
-    fetchUsername();
-  }, []);
+  const fetchUsername = async () => {
+    const name = await getUsername();
+    setUsername(name);
+    form.setValue("createdBy", name);
+  };
+  fetchUsername();
 
   const [open, setOpen] = useState(false);
   const form = useForm<BookingSchemaType>({
@@ -73,6 +71,7 @@ const Add = () => {
     onSuccess: () => {
       setOpen(false);
       form.reset();
+      setClicked(!clicked);
     },
   });
 
