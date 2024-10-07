@@ -1,10 +1,13 @@
 "use client";
 import AddSection from "@/sections/AddSection";
-import Add from "./Add";
 import TableDiv from "./TableDiv";
 import { useState } from "react";
 import { BookingSchemaType } from "@/schema/bookings";
 import { format } from "date-fns";
+import { Button } from "./ui/button";
+import { Check, Pen, Trash } from "lucide-react";
+import { markAsVenu } from "@/actions/markAsVenu";
+import { deleteBooking } from "@/actions/deleteBooking";
 
 type Props = {
   bookings: BookingSchemaType[];
@@ -12,6 +15,13 @@ type Props = {
 const BookingTable = ({ bookings }: Props) => {
   const [date, setDate] = useState(undefined);
   const [Showall, setShowall] = useState(false);
+
+  const handleVenu = (id: number) => {
+    markAsVenu(id);
+  };
+  const handleDelete = (id: number) => {
+    deleteBooking(id);
+  };
   return (
     <div className="">
       <div className="max-w-[90rem] mx-auto">
@@ -32,7 +42,10 @@ const BookingTable = ({ bookings }: Props) => {
             <TableDiv>Actions</TableDiv>
           </div>
           {bookings.map((item) => (
-            <div className="grid grid-cols-10 border-b py-2 font-jockey text-[17px]">
+            <div
+              className="grid grid-cols-10 border-b py-2 font-jockey text-[17px]"
+              key={item.id}
+            >
               <TableDiv>
                 <span className="font-bold text-sm bg-red-500 text-white px-2 py-0.5">
                   Yassine
@@ -56,7 +69,30 @@ const BookingTable = ({ bookings }: Props) => {
                   </span>
                 )}
               </TableDiv>
-              <TableDiv>{item.soin}</TableDiv>
+              <TableDiv>
+                <div className="flex items-center gap-x-3">
+                  <Button
+                    onClick={() => handleVenu(item.id)}
+                    className="size-[30px] bg-green-600 hover:bg-green-700"
+                    size={"icon"}
+                  >
+                    <Check size={20} />
+                  </Button>{" "}
+                  <Button
+                    className="size-[30px] bg-blue-600 hover:bg-blue-700"
+                    size={"icon"}
+                  >
+                    <Pen size={20} />
+                  </Button>
+                  <Button
+                    onClick={() => handleDelete(item.id)}
+                    className="size-[30px] bg-red-600 hover:bg-red-700"
+                    size={"icon"}
+                  >
+                    <Trash size={20} />
+                  </Button>
+                </div>
+              </TableDiv>
             </div>
           ))}
         </div>
