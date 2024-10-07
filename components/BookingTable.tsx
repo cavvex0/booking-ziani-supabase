@@ -47,8 +47,8 @@ const BookingTable = ({ bookings }: Props) => {
               key={item.id}
             >
               <TableDiv>
-                <span className="font-bold text-sm bg-red-500 text-white px-2 py-0.5">
-                  Yassine
+                <span className="font-bold text-sm bg-red-500 text-white px-2 py-0.5 capitalize">
+                  {item.createdBy}
                 </span>
               </TableDiv>
               <TableDiv>{item.hotel}</TableDiv>

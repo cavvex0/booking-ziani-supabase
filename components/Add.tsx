@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Dialog,
   DialogContent,
@@ -29,15 +29,27 @@ import { useForm } from "react-hook-form";
 import { TimePicker } from "./TimePicker/time-picker-demo";
 import { BookingSchema, BookingSchemaType } from "@/schema/bookings";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { createClient } from "@/utils/supabase/client";
 import { useMutation } from "@tanstack/react-query";
 import { createBooking } from "@/actions/createBooking";
+import { useAuth } from "@/providers/AuthProvider";
+import { getUsername } from "@/lib/getUserClient";
 
 const people = ["adam", "hannan", "soraya", "fija", "yassine"];
 
 const Add = () => {
-  const [open, setOpen] = useState(false);
+  const [username, setUsername] = useState<string | null>(null);
 
+  useEffect(() => {
+    const fetchUsername = async () => {
+      const name = await getUsername();
+      setUsername(name);
+      form.setValue("createdBy", name);
+    };
+
+    fetchUsername();
+  }, []);
+
+  const [open, setOpen] = useState(false);
   const form = useForm<BookingSchemaType>({
     resolver: zodResolver(BookingSchema),
     defaultValues: {
@@ -50,7 +62,7 @@ const Add = () => {
       details: "",
       status: false,
       deleted: false,
-      createdBy: "",
+      createdBy: username || "",
     },
   });
 

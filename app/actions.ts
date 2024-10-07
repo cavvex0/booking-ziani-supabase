@@ -6,10 +6,11 @@ import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 
 export const signUpAction = async (formData: FormData) => {
-  const email = formData.get("email")?.toString();
+  const username = formData.get("username")?.toString();
   const password = formData.get("password")?.toString();
   const supabase = createClient();
   const origin = headers().get("origin");
+  const email = username + "@example.com";
 
   if (!email || !password) {
     return { error: "Email and password are required" };
@@ -20,16 +21,19 @@ export const signUpAction = async (formData: FormData) => {
     password,
     options: {
       emailRedirectTo: `${origin}/auth/callback`,
+      data: {
+        username,
+      },
     },
   });
 
   if (error) {
     console.error(error.code + " " + error.message);
-    return encodedRedirect("error", "/sign-up", error.message);
+    return encodedRedirect("error", "/login", error.message);
   } else {
     return encodedRedirect(
       "success",
-      "/sign-up",
+      "/login",
       "Thanks for signing up! Please check your email for a verification link."
     );
   }
