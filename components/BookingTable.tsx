@@ -2,7 +2,7 @@
 import AddSection from "@/sections/AddSection";
 import TableDiv from "./TableDiv";
 import { useState } from "react";
-import { BookingSchemaType } from "@/schema/bookings";
+import { BookingSchemaTableType, BookingSchemaType } from "@/schema/bookings";
 import { format } from "date-fns";
 import { Button } from "./ui/button";
 import { Check, Pen, Trash } from "lucide-react";
@@ -10,7 +10,7 @@ import { markAsVenu } from "@/actions/markAsVenu";
 import { deleteBooking } from "@/actions/deleteBooking";
 
 type Props = {
-  bookings: BookingSchemaType[];
+  bookings: BookingSchemaTableType[];
 };
 const BookingTable = ({ bookings }: Props) => {
   const [date, setDate] = useState(undefined);
