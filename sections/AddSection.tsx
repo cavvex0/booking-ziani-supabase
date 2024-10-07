@@ -16,11 +16,7 @@ type Props = {
   setDate: any;
   handleShowAll: () => void;
 };
-const AddSection = ({
-  date,
-  setDate,
-  handleShowAll,
-}: Props) => {
+const AddSection = ({ date, setDate, handleShowAll }: Props) => {
   return (
     <div className="flex items-center justify-between">
       <Add />
@@ -57,7 +53,7 @@ const AddSection = ({
         </Popover>
 
         <Button
-          onClick={() => setDate(null)}
+          onClick={() => setDate(new Date())}
           className="bg-red-600 hover:bg-red-500 size-[36px]"
           size={"icon"}
         >

@@ -8,12 +8,9 @@ import { Button } from "./ui/button";
 import { Check, Pen, Trash } from "lucide-react";
 import { markAsVenu } from "@/actions/markAsVenu";
 import { deleteBooking } from "@/actions/deleteBooking";
-import { useRouter } from "next/navigation";
 
 const BookingTable = ({ bookings }: { bookings: BookingSchemaTableType[] }) => {
-  const router = useRouter();
   const [date, setDate] = useState<Date | null>(new Date());
-  const [loading, setLoading] = useState(false);
 
   const filteredBookings = date
     ? bookings.filter(
@@ -24,13 +21,11 @@ const BookingTable = ({ bookings }: { bookings: BookingSchemaTableType[] }) => {
     : bookings;
 
   const handleShowAll = () => {
-    setLoading(true);
     if (date) {
       setDate(null);
     } else {
       setDate(new Date());
     }
-    setLoading(false);
   };
   const handleVenu = (id: number) => {
     markAsVenu(id);
@@ -38,7 +33,7 @@ const BookingTable = ({ bookings }: { bookings: BookingSchemaTableType[] }) => {
   const handleDelete = (id: number) => {
     deleteBooking(id);
   };
-  if (!filteredBookings) return <div>No bookings found</div>;
+
   return (
     <div className="">
       <div className="max-w-[90rem] mx-auto">
