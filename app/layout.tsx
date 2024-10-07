@@ -1,6 +1,6 @@
 import { GeistSans } from "geist/font/sans";
 import "./globals.css";
-import Header from "@/components/Header";
+import { Jockey_One } from "next/font/google";
 
 const defaultUrl = process.env.VERCEL_URL
   ? `https://${process.env.VERCEL_URL}`
@@ -11,6 +11,11 @@ export const metadata = {
   title: "Ziani Bookings",
   description: "This app was created by Adam @Cavvex",
 };
+const jockey = Jockey_One({
+  subsets: ["latin"],
+  weight: ["400"],
+  variable: "--font-jockey",
+});
 
 export default function RootLayout({
   children,
@@ -18,10 +23,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={GeistSans.className} suppressHydrationWarning>
-      <body className="bg-background text-foreground">
-        {children}
-      </body>
+    <html
+      lang="en"
+      className={`${GeistSans.className} ${jockey.variable}`}
+      suppressHydrationWarning
+    >
+      <body className="bg-background text-foreground">{children}</body>
     </html>
   );
 }
