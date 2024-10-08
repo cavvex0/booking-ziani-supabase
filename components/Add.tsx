@@ -32,6 +32,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation } from "@tanstack/react-query";
 import { createBooking } from "@/actions/createBooking";
 import { getUsername } from "@/lib/getUserClient";
+import toast from "react-hot-toast";
 
 const people = ["adam", "hannan", "soraya", "fija", "yassine"];
 
@@ -69,6 +70,7 @@ const Add = () => {
     onSuccess: () => {
       setOpen(false);
       form.reset();
+      toast.success("Réservation créée avec succès 🎉");
     },
   });
 

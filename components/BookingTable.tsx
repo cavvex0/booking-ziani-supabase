@@ -9,6 +9,7 @@ import { Check, Edit, Pen, Trash } from "lucide-react";
 import { markAsVenu } from "@/actions/markAsVenu";
 import { deleteBooking } from "@/actions/deleteBooking";
 import EditBooking from "./EditBooking";
+import toast from "react-hot-toast";
 
 const BookingTable = ({ bookings }: { bookings: BookingSchemaTableType[] }) => {
   const [date, setDate] = useState<Date | null>(new Date());
@@ -28,11 +29,17 @@ const BookingTable = ({ bookings }: { bookings: BookingSchemaTableType[] }) => {
       setDate(new Date());
     }
   };
-  const handleVenu = (id: number) => {
-    markAsVenu(id);
+  const handleVenu = async (id: number, status: boolean) => {
+    await markAsVenu(id, status);
+    if (status) {
+      toast.error("La réservation a été basculé comme pas encore venu ❌");
+    } else {
+      toast.success("La réservation a été basculé comme venu 🎉");
+    }
   };
   const handleDelete = (id: number) => {
     deleteBooking(id);
+    toast.success("Réservation supprimée avec succès 🎉");
   };
 
   return (
@@ -89,7 +96,7 @@ const BookingTable = ({ bookings }: { bookings: BookingSchemaTableType[] }) => {
               <TableDiv>
                 <div className="flex items-center gap-x-3">
                   <Button
-                    onClick={() => handleVenu(item.id)}
+                    onClick={() => handleVenu(item.id, item.status)}
                     className="size-[30px] bg-green-600 hover:bg-green-700"
                     size={"icon"}
                   >

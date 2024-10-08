@@ -27,6 +27,7 @@ import {
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation } from "@tanstack/react-query";
 import { editeBooking } from "@/actions/editeBooking";
+import toast from "react-hot-toast";
 
 type Props = {
   item: BookingSchemaTableType;
@@ -58,6 +59,7 @@ const EditBooking = ({ item }: Props) => {
     onSuccess: () => {
       setOpen(false);
       form.reset();
+      toast.success("Mis à jour avec succès 🎉");
     },
   });
 

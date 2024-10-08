@@ -2,6 +2,7 @@ import { GeistSans } from "geist/font/sans";
 import "./globals.css";
 import { Jockey_One } from "next/font/google";
 import TanstackProviders from "@/providers/TanstackProvider";
+import { Toaster } from "react-hot-toast";
 
 const defaultUrl = process.env.VERCEL_URL
   ? `https://${process.env.VERCEL_URL}`
@@ -31,6 +32,16 @@ export default function RootLayout({
     >
       <body className="bg-background text-foreground">
         <TanstackProviders>{children}</TanstackProviders>
+        <Toaster
+          toastOptions={{
+            className: "text-sm",
+            style: {
+              border: "1px solid #713200",
+              padding: "16px",
+              color: "#713200",
+            },
+          }}
+        />
       </body>
     </html>
   );
