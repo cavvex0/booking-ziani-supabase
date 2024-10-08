@@ -43,6 +43,7 @@ const Add = () => {
     const name = await getUsername();
     setUsername(name);
     form.setValue("createdBy", name);
+    form.setValue("person", name);
   };
   fetchUsername();
 
