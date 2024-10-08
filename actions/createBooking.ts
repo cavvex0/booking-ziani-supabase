@@ -45,7 +45,7 @@ async function sendPushNotification(
   const message = {
     to: expoPushToken,
     sound: "default",
-    title: `${username} ajout d'une nouvelle réservation`,
+    title: `${username.charAt(0).toUpperCase() + username.slice(1)} ajout d'une nouvelle réservation`,
     body: `Soin: ${booking.soin || "Vide!"} , Date: ${format(
       booking.date,
       "dd/MM/yyyy HH:mm"

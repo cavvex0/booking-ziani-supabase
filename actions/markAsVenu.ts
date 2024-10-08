@@ -59,9 +59,7 @@ async function sendPushNotification(
   const message = {
     to: expoPushToken,
     sound: "default",
-    title: `${username.charAt(0).toUpperCase() + username.slice(1)} basculé ${
-      hotel.hotel
-    } comme venu`,
+    title: `${username.charAt(0).toUpperCase() + username.slice(1)} basculé | ${hotel.hotel} | comme venu`,
     body: `nothing for now`,
     data: { someData: "goes here" },
   };
