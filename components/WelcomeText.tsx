@@ -6,9 +6,11 @@ const WelcomeText = ({ username }: { username: string }) => {
       <h1 className="font-bold text-[24px] lg:text-3xl font-jockey text-black/90">
         Bon Retour <span className="capitalize">{username} 👋</span>
       </h1>
-      <Link href={"/dashboard/deleted"} className="underline text-sm">
-        Pour Admin
-      </Link>
+      {(username === "hannan" || username === "adam") && (
+        <Link href={"/dashboard/deleted"} className="underline text-sm">
+          Pour Admin
+        </Link>
+      )}
     </div>
   );
 };
