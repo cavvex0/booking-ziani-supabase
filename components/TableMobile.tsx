@@ -5,6 +5,8 @@ import AddSectionMobile from "@/sections/AddSectionMobile";
 import { format } from "date-fns";
 import { Check, Pen, Trash } from "lucide-react";
 import EditBooking from "./EditBooking";
+import ConfirmVenu from "./confirmAction/ConfirmVenu";
+import ConfirmDelete from "./confirmAction/ConfirmDelete";
 
 type Props = {
   date: Date | null;
@@ -44,21 +46,9 @@ const TableMobile = ({
                 </h1>
                 <h1 className="capitalize  text-[15px]">de {item.person}</h1>
                 <div className="flex flex-row items-center gap-x-4">
-                  <Button
-                    className="size-6 bg-green-600 hover:bg-green-700"
-                    size={"icon"}
-                    onClick={() => handleVenu(item.id, item.status)}
-                  >
-                    <Check size={15} />
-                  </Button>
+                  <ConfirmVenu item={item} handleVenu={handleVenu} />
                   <EditBooking item={item} />
-                  <Button
-                    className="size-6 bg-red-600 hover:bg-red-700"
-                    size={"icon"}
-                    onClick={() => handleDelete(item.id)}
-                  >
-                    <Trash size={15} />
-                  </Button>
+                  <ConfirmDelete item={item} handleDelete={handleDelete} />
                 </div>
               </div>
 

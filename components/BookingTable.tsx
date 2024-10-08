@@ -12,6 +12,8 @@ import EditBooking from "./EditBooking";
 import toast from "react-hot-toast";
 import { useMediaQuery } from "@/hooks/use-media-query";
 import TableMobile from "./TableMobile";
+import ConfirmVenu from "./confirmAction/ConfirmVenu";
+import ConfirmDelete from "./confirmAction/ConfirmDelete";
 
 const BookingTable = ({ bookings }: { bookings: BookingSchemaTableType[] }) => {
   const isDesktop = useMediaQuery("(min-width: 768px)");
@@ -36,9 +38,9 @@ const BookingTable = ({ bookings }: { bookings: BookingSchemaTableType[] }) => {
   const handleVenu = async (id: number, status: boolean) => {
     await markAsVenu(id, status);
     if (status) {
-      toast.error("La réservation a été basculé comme pas encore venu ❌");
+      toast.error("La réservation a été marqué comme pas encore venu");
     } else {
-      toast.success("La réservation a été basculé comme venu 🎉");
+      toast.success("La réservation a été marqué comme venu 🎉");
     }
   };
   const handleDelete = (id: number) => {
@@ -100,21 +102,10 @@ const BookingTable = ({ bookings }: { bookings: BookingSchemaTableType[] }) => {
                 </TableDiv>
                 <TableDiv>
                   <div className="flex items-center gap-x-3">
-                    <Button
-                      onClick={() => handleVenu(item.id, item.status)}
-                      className="size-[30px] bg-green-600 hover:bg-green-700"
-                      size={"icon"}
-                    >
-                      <Check size={20} />
-                    </Button>
+                    <ConfirmVenu item={item} handleVenu={handleVenu} />
+
                     <EditBooking item={item} />
-                    <Button
-                      onClick={() => handleDelete(item.id)}
-                      className="size-[30px] bg-red-600 hover:bg-red-700"
-                      size={"icon"}
-                    >
-                      <Trash size={20} />
-                    </Button>
+                    <ConfirmDelete item={item} handleDelete={handleDelete} />
                   </div>
                 </TableDiv>
               </div>
