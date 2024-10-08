@@ -43,7 +43,7 @@ const BookingTable = ({ bookings }: { bookings: BookingSchemaTableType[] }) => {
   };
 
   return (
-    <div className="">
+    <div className=" pb-[90px]">
       <div className="max-w-[90rem] mx-auto">
         <div className="border min-h-[600px]">
           <div className="border-b py-4 px-12">
