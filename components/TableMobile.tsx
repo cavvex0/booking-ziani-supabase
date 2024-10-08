@@ -40,8 +40,7 @@ const TableMobile = ({
             <div className="border border-gray-400 rounded-lg bg-white z-10">
               <div className="p-2.5 border-b border-gray-400 flex flex-row items-center justify-between">
                 <h1 className="capitalize text-[15px]">
-                  ajouter par{" "}
-                  <span className="font-bold ml-1">{item.createdBy}</span>
+                  ajouter par <span className="ml-1">{item.createdBy}</span>
                 </h1>
                 <h1 className="capitalize  text-[15px]">de {item.person}</h1>
                 <div className="flex flex-row items-center gap-x-4">
@@ -60,24 +59,6 @@ const TableMobile = ({
                   >
                     <Trash size={15} />
                   </Button>
-                  {/* <FontAwesome
-                    name="check-circle"
-                    size={23}
-                    color="green"
-                    onPress={() => handleVenu(item.id)}
-                  />
-                  <FontAwesome
-                    name="pencil-square"
-                    size={23}
-                    color="blue"
-                    onPress={() => setVisable(true)}
-                  />
-                  <FontAwesome
-                    name="trash-o"
-                    size={23}
-                    color="red"
-                    onPress={() => handleDelete(item.id)}
-                  /> */}
                 </div>
               </div>
 
