@@ -16,7 +16,7 @@ async function Deleted() {
     return null;
   }
   return (
-    <div className="">
+    <div className="max-w-[90rem] mx-auto">
       <WelcomeText username={username} />
       <DeletedPage bookings={data} />
     </div>
