@@ -52,7 +52,7 @@ const Add = () => {
     defaultValues: {
       hotel: "",
       date: new Date(),
-      person: "",
+      person: username || "",
       reception: "",
       soin: "",
       people: "",
@@ -75,7 +75,6 @@ const Add = () => {
   });
 
   const onSubmit = async (values: any) => {
-
     mutate(values);
   };
 
