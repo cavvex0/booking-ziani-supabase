@@ -27,7 +27,6 @@ export async function createBooking(values: any) {
     return;
   }
   profileData.forEach((profile) => {
-    console.log(profile);
     sendPushNotification(
       profile.push_token,
       user.user_metadata.username,

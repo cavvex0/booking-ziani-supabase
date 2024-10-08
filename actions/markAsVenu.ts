@@ -21,8 +21,6 @@ export async function markAsVenu(id: number, status: boolean) {
     .eq("id", id)
     .single();
 
-  console.log(hotel);
-
   if (!hotel) {
     return;
   }
@@ -39,7 +37,6 @@ export async function markAsVenu(id: number, status: boolean) {
   }
   if (!status) {
     profileData.forEach((profile) => {
-      console.log(profile);
       sendPushNotification(
         profile.push_token,
         hotel,

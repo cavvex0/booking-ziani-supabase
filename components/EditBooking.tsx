@@ -53,6 +53,7 @@ const EditBooking = ({ item }: Props) => {
       people: item.people,
       details: item.details,
       createdBy: item.createdBy,
+      status: item.status,
     },
   });
 
@@ -69,7 +70,6 @@ const EditBooking = ({ item }: Props) => {
 
   const onSubmit = async (values: BookingSchemaTableType) => {
     mutate(values);
-    setOpen(false);
   };
 
   return (

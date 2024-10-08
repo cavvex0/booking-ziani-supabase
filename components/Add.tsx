@@ -181,7 +181,6 @@ function DatePicker({ form }: { form: any }) {
             onSelect={(selectedDate: Date | undefined) => {
               setDate(selectedDate);
               if (selectedDate) {
-                console.log(selectedDate);
                 form.setValue("date", selectedDate);
               }
             }}
