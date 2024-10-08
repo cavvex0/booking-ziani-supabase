@@ -1,6 +1,6 @@
 "use server";
 
-import { BookingSchemaTable, BookingSchemaTableType } from "@/schema/bookings";
+import {  BookingSchemaTableType } from "@/schema/bookings";
 import { createClient } from "@/utils/supabase/server";
 import { revalidatePath } from "next/cache";
 
