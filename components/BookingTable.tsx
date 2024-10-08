@@ -5,9 +5,10 @@ import { useState } from "react";
 import { BookingSchemaTableType } from "@/schema/bookings";
 import { format } from "date-fns";
 import { Button } from "./ui/button";
-import { Check, Pen, Trash } from "lucide-react";
+import { Check, Edit, Pen, Trash } from "lucide-react";
 import { markAsVenu } from "@/actions/markAsVenu";
 import { deleteBooking } from "@/actions/deleteBooking";
+import EditBooking from "./EditBooking";
 
 const BookingTable = ({ bookings }: { bookings: BookingSchemaTableType[] }) => {
   const [date, setDate] = useState<Date | null>(new Date());
@@ -93,13 +94,8 @@ const BookingTable = ({ bookings }: { bookings: BookingSchemaTableType[] }) => {
                     size={"icon"}
                   >
                     <Check size={20} />
-                  </Button>{" "}
-                  <Button
-                    className="size-[30px] bg-blue-600 hover:bg-blue-700"
-                    size={"icon"}
-                  >
-                    <Pen size={20} />
                   </Button>
+                  <EditBooking item={item} />
                   <Button
                     onClick={() => handleDelete(item.id)}
                     className="size-[30px] bg-red-600 hover:bg-red-700"
