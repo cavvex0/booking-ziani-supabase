@@ -164,7 +164,7 @@ function DatePicker({ form }: { form: any }) {
         <Button
           variant={"outline"}
           className={cn(
-            "w-[48%] lg:w-full text-black justify-center gap-x-6 text-left",
+            "w-full text-black justify-center gap-x-6 text-left",
             !date && "text-muted-foreground"
           )}
         >
