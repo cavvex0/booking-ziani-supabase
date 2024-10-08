@@ -34,7 +34,7 @@ export default function RootLayout({
         <TanstackProviders>{children}</TanstackProviders>
         <Toaster
           toastOptions={{
-            className: "text-sm",
+            className: "text-[16px] font-jockey",
             style: {
               border: "1px solid #713200",
               padding: "16px",
