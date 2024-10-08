@@ -35,7 +35,7 @@ const ConfirmDeleteAll = () => {
         <AlertDialogHeader>
           <AlertDialogTitle>Etes-vous absolument sûr?</AlertDialogTitle>
           <AlertDialogDescription>
-            Si vous avez cliqué sur continuer || || sera supprimé!
+            Si vous avez cliqué sur continuer toutes les réservations seront supprimées!
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
