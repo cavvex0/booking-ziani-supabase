@@ -1,10 +1,10 @@
 "use server";
 
-import {  BookingSchemaTableType } from "@/schema/bookings";
+import {  BookingSchemaTableType, EditBookingSchemaType } from "@/schema/bookings";
 import { createClient } from "@/utils/supabase/server";
 import { revalidatePath } from "next/cache";
 
-export async function editeBooking(values: BookingSchemaTableType) {
+export async function editeBooking(values: EditBookingSchemaType) {
   const supabase = createClient();
   const { data } = await supabase
     .from("bookings")

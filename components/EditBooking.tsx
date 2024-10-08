@@ -23,6 +23,8 @@ import {
   BookingSchemaTable,
   BookingSchemaTableType,
   BookingSchemaType,
+  EditBookingSchemaType,
+  EditSchemaTable,
 } from "@/schema/bookings";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation } from "@tanstack/react-query";
@@ -41,19 +43,16 @@ const EditBooking = ({ item }: Props) => {
   const [open, setOpen] = useState(false);
   const isDesktop = useMediaQuery("(min-width: 768px)");
 
-  const form = useForm<BookingSchemaTableType>({
-    resolver: zodResolver(BookingSchemaTable),
+  const form = useForm<EditBookingSchemaType>({
+    resolver: zodResolver(EditSchemaTable),
     defaultValues: {
       id: item.id,
       hotel: item.hotel,
       date: item.date,
-      person: item.person,
       reception: item.reception,
       soin: item.soin,
       people: item.people,
       details: item.details,
-      createdBy: item.createdBy,
-      status: item.status,
     },
   });
 
@@ -68,7 +67,7 @@ const EditBooking = ({ item }: Props) => {
     },
   });
 
-  const onSubmit = async (values: BookingSchemaTableType) => {
+  const onSubmit = async (values: EditBookingSchemaType) => {
     mutate(values);
   };
 
