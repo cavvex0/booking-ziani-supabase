@@ -1,28 +1,25 @@
-import BookingTable from "@/components/BookingTable";
+import DeletedPage from "@/sections/DeletedPage";
 import WelcomeText from "@/components/WelcomeText";
 import { getUsername } from "@/lib/getUsername";
 import { createClient } from "@/utils/supabase/server";
 
-const Dashboard = async () => {
+async function Deleted() {
   const username = await getUsername();
   const supabase = createClient();
-
-  const { data: bookings } = await supabase
+  const { data } = await supabase
     .from("bookings")
     .select("*")
-    .order("date", { ascending: true })
-    .neq("deleted", true);
+    .eq("deleted", true)
+    .order("date", { ascending: true });
 
-  if (!bookings) {
+  if (!data) {
     return null;
   }
-
   return (
-    <div className="max-w-[90rem] mx-auto">
+    <div className="">
       <WelcomeText username={username} />
-      <BookingTable bookings={bookings} />
+      <DeletedPage bookings={data} />
     </div>
   );
-};
-
-export default Dashboard;
+}
+export default Deleted;

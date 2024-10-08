@@ -14,6 +14,7 @@ import { useMediaQuery } from "@/hooks/use-media-query";
 import TableMobile from "./TableMobile";
 import ConfirmVenu from "./confirmAction/ConfirmVenu";
 import ConfirmDelete from "./confirmAction/ConfirmDelete";
+import { markAsDelete } from "@/actions/markAsDelete";
 
 const BookingTable = ({ bookings }: { bookings: BookingSchemaTableType[] }) => {
   const isDesktop = useMediaQuery("(min-width: 768px)");
@@ -44,7 +45,7 @@ const BookingTable = ({ bookings }: { bookings: BookingSchemaTableType[] }) => {
     }
   };
   const handleDelete = (id: number) => {
-    deleteBooking(id);
+    markAsDelete(id);
     toast.success("Réservation supprimée avec succès 🎉");
   };
 
@@ -103,7 +104,6 @@ const BookingTable = ({ bookings }: { bookings: BookingSchemaTableType[] }) => {
                 <TableDiv>
                   <div className="flex items-center gap-x-3">
                     <ConfirmVenu item={item} handleVenu={handleVenu} />
-
                     <EditBooking item={item} />
                     <ConfirmDelete item={item} handleDelete={handleDelete} />
                   </div>
