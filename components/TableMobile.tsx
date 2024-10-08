@@ -1,0 +1,128 @@
+import { BookingSchemaTableType } from "@/schema/bookings";
+import Add from "./Add";
+import { Button } from "./ui/button";
+import AddSectionMobile from "@/sections/AddSectionMobile";
+import { format } from "date-fns";
+import { Check, Pen, Trash } from "lucide-react";
+import EditBooking from "./EditBooking";
+
+type Props = {
+  date: Date | null;
+  setDate: any;
+  handleShowAll: () => void;
+  filteredBookings: BookingSchemaTableType[];
+  handleVenu: (id: number, status: boolean) => void;
+  handleDelete: (id: number) => void;
+};
+
+const TableMobile = ({
+  date,
+  filteredBookings,
+  setDate,
+  handleShowAll,
+  handleVenu,
+  handleDelete,
+}: Props) => {
+  return (
+    <div className="px-4">
+      <AddSectionMobile
+        date={date}
+        handleShowAll={handleShowAll}
+        setDate={setDate}
+      />
+      <div className="pt-4 pb-8">
+        {filteredBookings.map((item) => (
+          <div className="relative mt-4 font-jockey">
+            {/* Shadow behind the card */}
+            <div className="absolute -bottom-2 left-2 -right-2 top-2 bg-black rounded-lg opacity-70 z-[-1]"></div>
+
+            {/* Card content */}
+            <div className="border border-gray-400 rounded-lg bg-white z-10">
+              <div className="p-2.5 border-b border-gray-400 flex flex-row items-center justify-between">
+                <h1 className="capitalize text-[15px]">
+                  ajouter par{" "}
+                  <span className="font-bold ml-1">{item.createdBy}</span>
+                </h1>
+                <h1 className="capitalize  text-[15px]">de {item.person}</h1>
+                <div className="flex flex-row items-center gap-x-4">
+                  <Button
+                    className="size-6 bg-green-600 hover:bg-green-700"
+                    size={"icon"}
+                    onClick={() => handleVenu(item.id, item.status)}
+                  >
+                    <Check size={15} />
+                  </Button>
+                  <EditBooking item={item} />
+                  <Button
+                    className="size-6 bg-red-600 hover:bg-red-700"
+                    size={"icon"}
+                    onClick={() => handleDelete(item.id)}
+                  >
+                    <Trash size={15} />
+                  </Button>
+                  {/* <FontAwesome
+                    name="check-circle"
+                    size={23}
+                    color="green"
+                    onPress={() => handleVenu(item.id)}
+                  />
+                  <FontAwesome
+                    name="pencil-square"
+                    size={23}
+                    color="blue"
+                    onPress={() => setVisable(true)}
+                  />
+                  <FontAwesome
+                    name="trash-o"
+                    size={23}
+                    color="red"
+                    onPress={() => handleDelete(item.id)}
+                  /> */}
+                </div>
+              </div>
+
+              <div className="p-3 flex flex-row items-center justify-between">
+                <h1 className="capitalize  text-[15px]">{item.hotel}</h1>
+                <h1 className="capitalize  text-[15px]">{item.reception}</h1>
+                <h1 className="capitalize  text-[15px]">{item.soin}</h1>
+              </div>
+              <div className="px-3 flex flex-row items-center justify-between">
+                <div className="flex-1">
+                  <h1 className="capitalize  text-[15px]">{item.people}</h1>
+                </div>
+                <div className="flex-1 justify-end w-full items-end">
+                  <h1 className="capitalize  text-[15px]">{item.details}</h1>
+                </div>
+              </div>
+              <div className="p-3 flex flex-row items-center justify-between">
+                <h1 className="capitalize  text-[15px]">
+                  {format(new Date(item.date), "yyyy-MM-dd")}
+                </h1>
+                <h1 className="capitalize  text-[15px]">
+                  {format(new Date(item.date), "HH:mm")}
+                </h1>
+                <div>
+                  {item.status ? (
+                    <div className="bg-green-500 px-2 py-1 rounded">
+                      <h1 className="capitalize  text-[12px] text-white">
+                        Venu
+                      </h1>
+                    </div>
+                  ) : (
+                    <div className="bg-red-500 px-2 py-1 rounded">
+                      <h1 className="capitalize  text-[12px] text-white">
+                        Pas Encore
+                      </h1>
+                    </div>
+                  )}
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+export default TableMobile;

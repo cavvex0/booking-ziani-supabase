@@ -5,11 +5,11 @@ import { PenLine } from "lucide-react";
 const Header = () => {
   return (
     <header className="border-b">
-      <div className="max-w-[90rem] mx-auto py-4">
+      <div className="max-w-[90rem] mx-auto py-4 px-4 xl:px-0">
         <div className="flex items-center justify-between">
-          <h1 className="text-[28px] font-extrabold uppercase tracking-tight font-jockey flex items-center gap-x-3">
+          <h1 className="text-[20px] lg:text-[28px] font-extrabold uppercase tracking-tight font-jockey flex items-center gap-x-3 text-black/90">
             Booking
-            <PenLine size={28} className="text-red-600" />
+            <PenLine className="text-red-600" />
           </h1>
           <form>
             <SubmitButton

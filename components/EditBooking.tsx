@@ -28,14 +28,18 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation } from "@tanstack/react-query";
 import { editeBooking } from "@/actions/editeBooking";
 import toast from "react-hot-toast";
+import { useMediaQuery } from "@/hooks/use-media-query";
+import { useRouter } from "next/navigation";
 
 type Props = {
   item: BookingSchemaTableType;
 };
 
 const EditBooking = ({ item }: Props) => {
+  const router = useRouter();
   const [date, setDate] = useState<Date | null>(new Date(item.date));
   const [open, setOpen] = useState(false);
+  const isDesktop = useMediaQuery("(min-width: 768px)");
 
   const form = useForm<BookingSchemaTableType>({
     resolver: zodResolver(BookingSchemaTable),
@@ -58,8 +62,8 @@ const EditBooking = ({ item }: Props) => {
 
     onSuccess: () => {
       setOpen(false);
-      form.reset();
       toast.success("Mis à jour avec succès 🎉");
+      router.refresh();
     },
   });
 
@@ -72,10 +76,10 @@ const EditBooking = ({ item }: Props) => {
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
         <Button
-          className="size-[30px] bg-blue-600 hover:bg-blue-700"
+          className={cn("size-6 lg:size-[30px] bg-blue-600 hover:bg-blue-700")}
           size={"icon"}
         >
-          <Pen size={20} />
+          <Pen size={isDesktop ? 20 : 15} />
         </Button>
       </DialogTrigger>
       <DialogContent>
