@@ -22,7 +22,7 @@ const ConfirmDeleteAll = () => {
     const supabase = createClient();
     await supabase.from("bookings").delete().eq("deleted", true);
     router.refresh();
-    toast.success("Tout les réservations sont supprimées avec succès 🎉");
+    toast.success("Toutes les réservations sont supprimées avec succès. 🎉");
   };
   return (
     <AlertDialog>
@@ -35,7 +35,8 @@ const ConfirmDeleteAll = () => {
         <AlertDialogHeader>
           <AlertDialogTitle>Etes-vous absolument sûr?</AlertDialogTitle>
           <AlertDialogDescription>
-            Si vous avez cliqué sur continuer toutes les réservations seront supprimées!
+            Si vous cliquez sur continuer, toutes les réservations seront
+            supprimées!
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>

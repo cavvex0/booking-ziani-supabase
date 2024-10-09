@@ -39,9 +39,9 @@ const BookingTable = ({ bookings }: { bookings: BookingSchemaTableType[] }) => {
   const handleVenu = async (id: number, status: boolean) => {
     await markAsVenu(id, status);
     if (status) {
-      toast.error("La réservation a été marqué comme pas encore venu");
+      toast.error("La réservation a été marquée comme pas encore venue.");
     } else {
-      toast.success("La réservation a été marqué comme venu 🎉");
+      toast.success("La réservation a été marquée comme venue. 🎉");
     }
   };
   const handleDelete = (id: number) => {
@@ -93,7 +93,7 @@ const BookingTable = ({ bookings }: { bookings: BookingSchemaTableType[] }) => {
                 <TableDiv>
                   {item.status ? (
                     <span className="bg-green-300 text-green-800 text-[15px] leading-[20px] px-4 py-1 rounded">
-                      Venu
+                      Venue
                     </span>
                   ) : (
                     <span className="bg-red-300 text-red-800 text-[15px] leading-[20px] px-4 py-1 rounded">

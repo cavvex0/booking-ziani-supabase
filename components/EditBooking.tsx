@@ -83,7 +83,7 @@ const EditBooking = ({ item }: Props) => {
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Mettre a jour la réservation</DialogTitle>
+          <DialogTitle>Mettre à jour la réservation</DialogTitle>
           <DialogDescription asChild className="py-4">
             <form
               onSubmit={form.handleSubmit(onSubmit)}

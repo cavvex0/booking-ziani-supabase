@@ -35,8 +35,8 @@ const ConfirmVenu = ({ handleVenu, item }: Props) => {
         <AlertDialogHeader>
           <AlertDialogTitle>Etes-vous absolument sûr?</AlertDialogTitle>
           <AlertDialogDescription>
-            Si vous avez cliqué sur continuer || {item.hotel} || sera marqué
-            comme venu!
+            Si vous avez cliqué sur continuer,|| {item.hotel} || sera marquée
+            comme venue!
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
