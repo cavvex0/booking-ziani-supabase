@@ -18,7 +18,7 @@ import { markAsDelete } from "@/actions/markAsDelete";
 
 const BookingTable = ({ bookings }: { bookings: BookingSchemaTableType[] }) => {
   const isDesktop = useMediaQuery("(min-width: 768px)");
-
+  const [tapped, setTapped] = useState(false);
   const [date, setDate] = useState<Date | null>(new Date());
 
   const filteredBookings = date
@@ -88,7 +88,13 @@ const BookingTable = ({ bookings }: { bookings: BookingSchemaTableType[] }) => {
                 <TableDiv>{item.soin}</TableDiv>
                 <TableDiv>{item.people}</TableDiv>
                 <TableDiv>{item.details}</TableDiv>
-                <TableDiv>{format(new Date(item.date), "dd/MM/yyyy")}</TableDiv>
+                <TableDiv>
+                  {tapped ? (
+                    <div>{format(new Date(item.created_at), "dd/MM/yyyy")}</div>
+                  ) : (
+                    <div>{format(new Date(item.date), "dd/MM/yyyy")}</div>
+                  )}
+                </TableDiv>
                 <TableDiv>{format(new Date(item.date), "HH:mm")}</TableDiv>
                 <TableDiv>
                   {item.status ? (

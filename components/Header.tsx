@@ -17,11 +17,11 @@ const Header = () => {
           </Link>
           <form>
             <SubmitButton
-              pendingText="Logging out..."
+              pendingText="Déconnexion..."
               formAction={signOutAction}
               className="bg-red-500 hover:bg-red-600 font-jockey text-[16px]"
             >
-              Log out
+              Se déconnecter
             </SubmitButton>
           </form>
         </div>

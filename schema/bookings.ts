@@ -1,3 +1,4 @@
+import { create } from "domain";
 import { z } from "zod";
 
 export const BookingSchema = z.object({
@@ -24,6 +25,7 @@ export const BookingSchemaTable = z.object({
   deleted: z.boolean().default(false),
   date: z.date(),
   person: z.string(),
+  created_at: z.date(),
 });
 export const EditSchemaTable = z.object({
   id: z.number(),

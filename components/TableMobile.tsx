@@ -1,12 +1,10 @@
 import { BookingSchemaTableType } from "@/schema/bookings";
-import Add from "./Add";
-import { Button } from "./ui/button";
 import AddSectionMobile from "@/sections/AddSectionMobile";
 import { format } from "date-fns";
-import { Check, Pen, Trash } from "lucide-react";
 import EditBooking from "./EditBooking";
 import ConfirmVenu from "./confirmAction/ConfirmVenu";
 import ConfirmDelete from "./confirmAction/ConfirmDelete";
+import { useState } from "react";
 
 type Props = {
   date: Date | null;
@@ -25,6 +23,7 @@ const TableMobile = ({
   handleVenu,
   handleDelete,
 }: Props) => {
+  const [tapped, setTapped] = useState(false);
   return (
     <div className="">
       <AddSectionMobile
@@ -66,13 +65,36 @@ const TableMobile = ({
                 </div>
               </div>
               <div className="p-3 flex flex-row items-center justify-between">
-                <h1 className="capitalize  text-[15px]">
-                  {format(new Date(item.date), "yyyy-MM-dd")}
-                </h1>
-                <h1 className="capitalize  text-[15px]">
-                  {format(new Date(item.date), "HH:mm")}
-                </h1>
-                <div>
+                <div className="flex items-center justify-between flex-1">
+                  {tapped ? (
+                    <div>
+                      <h1 className="capitalize  text-[15px]">
+                        {format(new Date(item.created_at), "yyyy-MM-dd")}
+                      </h1>
+                    </div>
+                  ) : (
+                    <div>
+                      <h1 className="capitalize  text-[15px]">
+                        {format(new Date(item.date), "yyyy-MM-dd")}
+                      </h1>
+                    </div>
+                  )}
+                  <input
+                    type="checkbox"
+                    checked={tapped}
+                    onChange={() => setTapped(!tapped)}
+                  />
+                  {tapped ? (
+                    <h1 className="capitalize  text-[15px]">
+                      {format(new Date(item.created_at), "HH:mm")}
+                    </h1>
+                  ) : (
+                    <h1 className="capitalize  text-[15px]">
+                      {format(new Date(item.date), "HH:mm")}
+                    </h1>
+                  )}
+                </div>
+                <div className="flex-1 flex items-center justify-end">
                   {item.status ? (
                     <div className="bg-green-500 px-2 py-1 rounded">
                       <h1 className="capitalize  text-[12px] text-white">
