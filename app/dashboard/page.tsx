@@ -18,7 +18,7 @@ const Dashboard = async () => {
   }
 
   return (
-    <div className="max-w-[90rem] mx-auto">
+    <div className="max-w-[90rem] mx-auto px-4 xl:px-6">
       <WelcomeText username={username} />
       <BookingTable bookings={bookings} />
     </div>

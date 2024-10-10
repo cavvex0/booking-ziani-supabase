@@ -6,7 +6,7 @@ import Link from "next/link";
 const Header = () => {
   return (
     <header className="border-b">
-      <div className="max-w-[90rem] mx-auto py-4 px-4 xl:px-0">
+      <div className="max-w-[90rem] mx-auto py-4 px-4 xl:px-6">
         <div className="flex items-center justify-between">
           <Link
             href={"/dashboard"}

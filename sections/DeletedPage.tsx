@@ -14,7 +14,7 @@ const DeletedPage = ({ bookings }: { bookings: BookingSchemaTableType[] }) => {
   };
 
   return (
-    <div className="px-4 xl:px-0">
+    <div className="">
       <div>
         <ConfirmDeleteAll />
       </div>

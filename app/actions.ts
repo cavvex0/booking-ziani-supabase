@@ -41,7 +41,8 @@ export const signUpAction = async (formData: FormData) => {
 
 export const signInAction = async (formData: FormData) => {
   const username = formData.get("username") as string;
-  const password = formData.get("password") as string;
+  const password0 = formData.get("password") as string;
+  const password = password0 + "00"
 
   const email = username + "@example.com";
   const supabase = createClient();
