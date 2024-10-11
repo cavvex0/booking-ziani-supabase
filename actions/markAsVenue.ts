@@ -4,7 +4,7 @@ import { createClient } from "@/utils/supabase/server";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
-export async function markAsVenu(id: number, status: boolean) {
+export async function markAsVenue(id: number, status: boolean) {
   const supabase = createClient();
   await supabase.from("bookings").update({ status: !status }).eq("id", id);
 
@@ -56,8 +56,8 @@ async function sendPushNotification(
   const message = {
     to: expoPushToken,
     sound: "default",
-    title: `${username.charAt(0).toUpperCase() + username.slice(1)} marqué | ${hotel.hotel} | comme venu`,
-    body: `nothing for now`,
+    title: `${username.charAt(0).toUpperCase() + username.slice(1)} marqué | ${hotel.hotel} | comme venue`,
+    body: ``,
     data: { someData: "goes here" },
   };
 

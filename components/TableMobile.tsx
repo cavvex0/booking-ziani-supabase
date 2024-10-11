@@ -2,7 +2,7 @@ import { BookingSchemaTableType } from "@/schema/bookings";
 import AddSectionMobile from "@/sections/AddSectionMobile";
 import { format } from "date-fns";
 import EditBooking from "./EditBooking";
-import ConfirmVenu from "./confirmAction/ConfirmVenu";
+import ConfirmVenue from "./confirmAction/ConfirmVenue";
 import ConfirmDelete from "./confirmAction/ConfirmDelete";
 import { useState } from "react";
 
@@ -11,7 +11,7 @@ type Props = {
   setDate: any;
   handleShowAll: () => void;
   filteredBookings: BookingSchemaTableType[];
-  handleVenu: (id: number, status: boolean) => void;
+  handleVenue: (id: number, status: boolean) => void;
   handleDelete: (id: number) => void;
 };
 
@@ -20,7 +20,7 @@ const TableMobile = ({
   filteredBookings,
   setDate,
   handleShowAll,
-  handleVenu,
+  handleVenue,
   handleDelete,
 }: Props) => {
   const [tapped, setTapped] = useState(false);
@@ -45,7 +45,7 @@ const TableMobile = ({
                 </h1>
                 <h1 className="capitalize  text-[15px]">de {item.person}</h1>
                 <div className="flex flex-row items-center gap-x-4">
-                  <ConfirmVenu item={item} handleVenu={handleVenu} />
+                  <ConfirmVenue item={item} handleVenue={handleVenue} />
                   <EditBooking item={item} />
                   <ConfirmDelete item={item} handleDelete={handleDelete} />
                 </div>
@@ -98,7 +98,7 @@ const TableMobile = ({
                   {item.status ? (
                     <div className="bg-green-500 px-2 py-1 rounded">
                       <h1 className="capitalize  text-[12px] text-white">
-                        Venu
+                        Venue
                       </h1>
                     </div>
                   ) : (

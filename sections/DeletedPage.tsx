@@ -60,7 +60,7 @@ const DeletedPage = ({ bookings }: { bookings: BookingSchemaTableType[] }) => {
                   {item.status ? (
                     <div className="bg-green-500 px-2 py-1 rounded">
                       <h1 className="capitalize  text-[12px] text-white">
-                        Venu
+                        Venue
                       </h1>
                     </div>
                   ) : (

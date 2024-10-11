@@ -4,15 +4,12 @@ import TableDiv from "./TableDiv";
 import { useState } from "react";
 import { BookingSchemaTableType } from "@/schema/bookings";
 import { format } from "date-fns";
-import { Button } from "./ui/button";
-import { Check, Edit, Pen, Trash } from "lucide-react";
-import { markAsVenu } from "@/actions/markAsVenu";
-import { deleteBooking } from "@/actions/deleteBooking";
+import { markAsVenue } from "@/actions/markAsVenue";
 import EditBooking from "./EditBooking";
 import toast from "react-hot-toast";
 import { useMediaQuery } from "@/hooks/use-media-query";
 import TableMobile from "./TableMobile";
-import ConfirmVenu from "./confirmAction/ConfirmVenu";
+import ConfirmVenue from "./confirmAction/ConfirmVenue";
 import ConfirmDelete from "./confirmAction/ConfirmDelete";
 import { markAsDelete } from "@/actions/markAsDelete";
 
@@ -36,8 +33,8 @@ const BookingTable = ({ bookings }: { bookings: BookingSchemaTableType[] }) => {
       setDate(new Date());
     }
   };
-  const handleVenu = async (id: number, status: boolean) => {
-    await markAsVenu(id, status);
+  const handleVenue = async (id: number, status: boolean) => {
+    await markAsVenue(id, status);
     if (status) {
       toast.error("La réservation a été marquée comme pas encore venue.");
     } else {
@@ -109,7 +106,7 @@ const BookingTable = ({ bookings }: { bookings: BookingSchemaTableType[] }) => {
                 </TableDiv>
                 <TableDiv>
                   <div className="flex items-center gap-x-3">
-                    <ConfirmVenu item={item} handleVenu={handleVenu} />
+                    <ConfirmVenue item={item} handleVenue={handleVenue} />
                     <EditBooking item={item} />
                     <ConfirmDelete item={item} handleDelete={handleDelete} />
                   </div>
@@ -123,7 +120,7 @@ const BookingTable = ({ bookings }: { bookings: BookingSchemaTableType[] }) => {
             setDate={setDate}
             handleShowAll={handleShowAll}
             filteredBookings={filteredBookings}
-            handleVenu={handleVenu}
+            handleVenue={handleVenue}
             handleDelete={handleDelete}
           />
         )}
