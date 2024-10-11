@@ -33,7 +33,7 @@ const TableMobile = ({
       />
       <div className="pt-4 pb-8">
         {filteredBookings.map((item) => (
-          <div className="relative mt-4 font-jockey">
+          <div className="relative mt-4 font-jockey" key={item.id}>
             {/* Shadow behind the card */}
             <div className="absolute -bottom-2 left-2 -right-2 top-2 bg-black rounded-lg opacity-70 z-[-1]"></div>
 
