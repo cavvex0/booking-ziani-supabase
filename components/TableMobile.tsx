@@ -34,7 +34,7 @@ const TableMobile = ({
       />
       {filteredBookings.length < 1 ? (
         <div className="flex items-center justify-center h-[40vh] font-jockey text-lg">
-          Pas de reservation ce jour 🤷‍♂️ !
+          Pas de réservation ce jour 🤷‍♂️ !
         </div>
       ) : (
         <div className="pt-4 pb-8">
