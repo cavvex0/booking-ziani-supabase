@@ -1,8 +1,16 @@
 import { signInAction } from "@/app/actions";
 import { SubmitButton } from "@/components/submit-button";
 import { Input } from "@/components/ui/input";
+import { createClient } from "@/utils/supabase/server";
+import { redirect } from "next/navigation";
 
-const Login = () => {
+const Login = async () => {
+  const supabase = createClient();
+  const user = await supabase.auth.getUser();
+  if (user.data.user) {
+    return redirect("/dashboard");
+  }
+
   return (
     <div className="lg:h-screen h-[55vh] w-screen grid place-items-center">
       <form className="flex flex-col gap-4 w-full lg:w-[400px] p-6 border py-14">
