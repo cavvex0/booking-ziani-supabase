@@ -5,6 +5,8 @@ import EditBooking from "./EditBooking";
 import ConfirmVenue from "./confirmAction/ConfirmVenue";
 import ConfirmDelete from "./confirmAction/ConfirmDelete";
 import { useState } from "react";
+import PathIcon from "@/assets/path.webp";
+import Image from "next/image";
 
 type Props = {
   date: Date | null;
@@ -45,10 +47,13 @@ const TableMobile = ({
 
               {/* Card content */}
               <div className="border border-gray-400 rounded-lg bg-white z-10">
-                <div className="p-2.5 border-b border-gray-400 flex flex-row items-center justify-between">
-                  <h1 className="capitalize text-[15px]">
-                    ajouter par <span className="ml-1">{item.createdBy}</span>
-                  </h1>
+                <div className="p-2.5 border-b border-gray-400 flex flex-row items-center justify-between ">
+                  <div className="relative">
+                    <h1 className="capitalize text-[15px]">
+                      ajouter par <span className="ml-1">{item.createdBy}</span>
+                    </h1>
+                    <Image className="absolute -bottom-1.5 -right-1.5" src={PathIcon} alt="path" width={50} height={50}/>
+                  </div>
                   <h1 className="capitalize  text-[15px]">de {item.person}</h1>
                   <div className="flex flex-row items-center gap-x-4">
                     <ConfirmVenue item={item} handleVenue={handleVenue} />
