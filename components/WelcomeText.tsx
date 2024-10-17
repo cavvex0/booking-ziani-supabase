@@ -18,7 +18,7 @@ const WelcomeText = async ({ username }: { username: string }) => {
       </h1>
       {(username === "hannan" || username === "adam") && (
         <div className="relative">
-          {data.length > 1 && (
+          {data.length > 0 && (
             <div className="size-5 bg-red-500 rounded-full flex items-center justify-center absolute -top-3 -right-2">
               <span className="text-[12px] font-semibold text-white">
                 {data.length}
