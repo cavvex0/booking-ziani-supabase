@@ -2,10 +2,12 @@
 import { deleteBooking } from "@/actions/deleteBooking";
 import ConfirmDelete from "@/components/confirmAction/ConfirmDelete";
 import ConfirmDeleteAll from "@/components/confirmAction/ConfirmDeleteAll";
-import { Button } from "@/components/ui/button";
 import { BookingSchemaTableType } from "@/schema/bookings";
 import { format } from "date-fns";
+import Image from "next/image";
 import toast from "react-hot-toast";
+import PathIcon from "@/assets/path.webp";
+
 
 const DeletedPage = ({ bookings }: { bookings: BookingSchemaTableType[] }) => {
   const handleDelete = (id: number) => {
@@ -27,9 +29,18 @@ const DeletedPage = ({ bookings }: { bookings: BookingSchemaTableType[] }) => {
             {/* Card content */}
             <div className="border border-gray-400 rounded-lg bg-white z-10">
               <div className="p-2.5 border-b border-gray-400 flex flex-row items-center justify-between">
-                <h1 className="capitalize text-[15px]">
-                  ajouter par <span className="ml-1">{item.createdBy}</span>
-                </h1>
+                <div className="relative">
+                  <h1 className="capitalize text-[15px]">
+                    ajouter par <span className="ml-1">{item.createdBy}</span>
+                  </h1>
+                  <Image
+                    className="absolute -bottom-1.5 -right-1.5"
+                    src={PathIcon}
+                    alt="path"
+                    width={50}
+                    height={50}
+                  />
+                </div>
                 <h1 className="capitalize  text-[15px]">de {item.person}</h1>
                 <div className="flex flex-row items-center gap-x-4">
                   <ConfirmDelete item={item} handleDelete={handleDelete} />
