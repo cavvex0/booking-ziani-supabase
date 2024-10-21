@@ -32,6 +32,7 @@ import { editeBooking } from "@/actions/editeBooking";
 import toast from "react-hot-toast";
 import { useMediaQuery } from "@/hooks/use-media-query";
 import { useRouter } from "next/navigation";
+import { createClient } from "@/utils/supabase/client";
 
 type Props = {
   item: BookingSchemaTableType;
@@ -68,6 +69,13 @@ const EditBooking = ({ item }: Props) => {
   });
 
   const onSubmit = async (values: EditBookingSchemaType) => {
+    const supabase = createClient();
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
+    if (!user) {
+      return router.push("/login");
+    }
     mutate(values);
   };
 

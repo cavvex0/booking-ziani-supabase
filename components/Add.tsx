@@ -33,10 +33,13 @@ import { useMutation } from "@tanstack/react-query";
 import { createBooking } from "@/actions/createBooking";
 import { getUsername } from "@/lib/getUserClient";
 import toast from "react-hot-toast";
+import { createClient } from "@/utils/supabase/client";
+import { useRouter } from "next/navigation";
 
 const people = ["adam", "hannan", "soraya", "fija", "yassine"];
 
 const Add = () => {
+  const router = useRouter();
   const [username, setUsername] = useState<string | null>(null);
 
   const fetchUsername = async () => {
@@ -76,6 +79,13 @@ const Add = () => {
   });
 
   const onSubmit = async (values: any) => {
+    const supabase = createClient();
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
+    if (!user) {
+      return router.push("/login");
+    }
     mutate(values);
   };
 
