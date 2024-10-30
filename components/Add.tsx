@@ -36,7 +36,7 @@ import toast from "react-hot-toast";
 import { createClient } from "@/utils/supabase/client";
 import { useRouter } from "next/navigation";
 
-const people = ["adam", "hannan", "soraya", "fija", "yassine"];
+const people = ["adam", "hannan", "soraya", "fija", "yassine","amine"];
 
 const Add = () => {
   const router = useRouter();
