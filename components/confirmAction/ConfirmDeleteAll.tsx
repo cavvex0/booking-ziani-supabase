@@ -9,7 +9,6 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
-import { useMediaQuery } from "@/hooks/use-media-query";
 import { Button } from "../ui/button";
 import { createClient } from "@/utils/supabase/client";
 import { useRouter } from "next/navigation";
@@ -17,7 +16,6 @@ import toast from "react-hot-toast";
 
 const ConfirmDeleteAll = () => {
   const router = useRouter();
-  const isDesktop = useMediaQuery("(min-width: 768px)");
   const handleDeleteAll = async () => {
     const supabase = createClient();
     await supabase.from("bookings").delete().eq("deleted", true);

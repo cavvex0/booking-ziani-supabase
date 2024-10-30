@@ -7,10 +7,11 @@ import { redirect } from "next/navigation";
 
 export const signUpAction = async (formData: FormData) => {
   const username = formData.get("username")?.toString();
-  const password = formData.get("password")?.toString();
+  const password0 = formData.get("password")?.toString();
   const supabase = createClient();
   const origin = headers().get("origin");
   const email = username + "@example.com";
+  const password = password0 + "00"
 
   if (!email || !password) {
     return { error: "Email and password are required" };
