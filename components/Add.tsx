@@ -36,7 +36,7 @@ import toast from "react-hot-toast";
 import { createClient } from "@/utils/supabase/client";
 import { useRouter } from "next/navigation";
 
-const people = ["adam", "hannan", "soraya", "fija", "yassine","amine"];
+const people = ["adam", "hannan", "soraya", "fija", "yassine", "amine"];
 
 const Add = () => {
   const router = useRouter();
@@ -92,7 +92,7 @@ const Add = () => {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button className="bg-blue-700 hover:bg-blue-600 font-jockey text-[17px]">
+        <Button className="bg-blue1 hover:bg-blueHover font-jockey text-[17px]">
           Ajouter
           <Plus className="ml-2" />
         </Button>

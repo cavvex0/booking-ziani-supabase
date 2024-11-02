@@ -1,6 +1,6 @@
 import { GeistSans } from "geist/font/sans";
 import "./globals.css";
-import { Jockey_One } from "next/font/google";
+import { Jockey_One, Nunito } from "next/font/google";
 import TanstackProviders from "@/providers/TanstackProvider";
 import { Toaster } from "react-hot-toast";
 
@@ -13,6 +13,7 @@ export const metadata = {
   title: "Ziani Bookings",
   description: "This app was created by Adam @Cavvex",
 };
+const nunito = Nunito({ subsets: ["latin"] });
 const jockey = Jockey_One({
   subsets: ["latin"],
   weight: ["400"],
@@ -27,10 +28,10 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${GeistSans.className} ${jockey.variable}`}
+      className={`$${nunito.className} ${jockey.variable}`}
       suppressHydrationWarning
     >
-      <body className="bg-background text-foreground">
+      <body className="bg-bg">
         <TanstackProviders>{children}</TanstackProviders>
         <Toaster
           toastOptions={{

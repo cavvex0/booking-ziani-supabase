@@ -52,7 +52,13 @@ const TableMobile = ({
                     <h1 className="capitalize text-[15px]">
                       ajouter par <span className="ml-1">{item.createdBy}</span>
                     </h1>
-                    <Image className="absolute -bottom-1.5 -right-1.5" src={PathIcon} alt="path" width={50} height={50}/>
+                    <Image
+                      className="absolute -bottom-1.5 -right-1.5"
+                      src={PathIcon}
+                      alt="path"
+                      width={50}
+                      height={50}
+                    />
                   </div>
                   <h1 className="capitalize  text-[15px]">de {item.person}</h1>
                   <div className="flex flex-row items-center gap-x-4">
