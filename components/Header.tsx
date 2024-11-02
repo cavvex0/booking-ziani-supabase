@@ -5,12 +5,12 @@ import Link from "next/link";
 
 const Header = () => {
   return (
-    <header className="border-b border-black">
+    <header className="border-b border-black bg-[#35336B]">
       <div className="max-w-[90rem] mx-auto py-4 px-4 xl:px-6">
         <div className="flex items-center justify-between">
           <Link
             href={"/dashboard"}
-            className="text-[20px] lg:text-[28px] font-[500] uppercase tracking-tight font-jockey flex items-center gap-x-3 text-black/90"
+            className="text-[20px] lg:text-[28px] font-[500] uppercase tracking-tight font-jockey flex items-center gap-x-3 text-white"
           >
             Booking
             <PenLine className="text-red-600" />
