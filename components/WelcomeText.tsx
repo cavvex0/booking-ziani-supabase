@@ -1,5 +1,6 @@
 import { createClient } from "@/utils/supabase/server";
 import Link from "next/link";
+import HiIcon from "./HiIcon";
 
 const WelcomeText = async ({ username }: { username: string }) => {
   const supabase = createClient();
@@ -13,9 +14,12 @@ const WelcomeText = async ({ username }: { username: string }) => {
   }
   return (
     <div className="lg:py-10 py-5 flex items-center justify-between">
-      <h1 className="font-[500] text-[24px] lg:text-3xl font-jockey text-black/90">
-        Bon Retour <span className="capitalize">{username} 👋</span>
-      </h1>
+      <div className="flex items-center gap-x-2">
+        <h1 className="font-[500] text-[24px] lg:text-3xl font-jockey text-black/90">
+          Bon Retour <span className="capitalize">{username}</span>
+        </h1>
+        <HiIcon />
+      </div>
       {(username === "hannan" || username === "adam") && (
         <div className="relative">
           {data.length > 0 && (
