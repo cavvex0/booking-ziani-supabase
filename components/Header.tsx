@@ -10,7 +10,7 @@ const Header = () => {
         <div className="flex items-center justify-between">
           <Link
             href={"/dashboard"}
-            className="text-[20px] lg:text-[28px] font-[500] uppercase tracking-tight font-jockey flex items-center gap-x-3 text-white"
+            className="text-[22px] lg:text-[28px] font-[500] uppercase tracking-tight font-jockey flex items-center gap-x-3 text-white"
           >
             Booking
             <PenLine className="text-red-600" />
