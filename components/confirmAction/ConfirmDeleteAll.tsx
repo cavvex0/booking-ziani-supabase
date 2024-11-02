@@ -25,7 +25,7 @@ const ConfirmDeleteAll = () => {
   return (
     <AlertDialog>
       <AlertDialogTrigger asChild>
-        <Button className="font-jockey bg-blue-600 hover:bg-blue-700">
+        <Button className="font-jockey bg-blue1 hover:bg-blueHover">
           Supprimer tout
         </Button>
       </AlertDialogTrigger>

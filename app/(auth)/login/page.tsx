@@ -12,8 +12,8 @@ const Login = async () => {
   }
 
   return (
-    <div className="lg:h-screen h-[55vh] w-screen grid place-items-center">
-      <form className="flex flex-col gap-4 w-full lg:w-[400px] p-6 border py-14 bg-white">
+    <div className="lg:h-screen h-[85vh] w-screen grid place-items-center px-4 ">
+      <form className="flex flex-col gap-4 w-full lg:w-[400px] p-6 border py-14 bg-white rounded-lg">
         <Input
           placeholder="username"
           name="username"

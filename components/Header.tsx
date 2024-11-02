@@ -19,7 +19,7 @@ const Header = () => {
             <SubmitButton
               pendingText="Déconnexion..."
               formAction={signOutAction}
-              className="bg-red-500 hover:bg-red-600 font-jockey text-[16px]"
+              className="bg-red-500 hover:bg-red-600 font-jockey lg:text-[16px]"
             >
               Se déconnecter
             </SubmitButton>
