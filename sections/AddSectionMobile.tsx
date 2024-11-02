@@ -24,7 +24,7 @@ const AddSectionMobile = ({ handleShowAll, date, setDate }: Props) => {
         <Add />
         <Button
           onClick={handleShowAll}
-          className="bg-blue-700 hover:bg-blue-600 font-jockey text-[17px]"
+          className="bg-blue1 hover:bg-blueHover font-jockey text-[17px]"
         >
           {date ? "Tout afficher" : "Aujour d'hui"}
         </Button>
