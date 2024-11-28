@@ -32,13 +32,9 @@ const BookingTable = ({ bookings }: { bookings: BookingSchemaTableType[] }) => {
       setDate(new Date());
     }
   };
-  const handleVenue = async (id: number, status: boolean) => {
-    await markAsVenue(id, status);
-    if (status) {
-      toast.error("La réservation a été marquée comme pas encore venue.");
-    } else {
-      toast.success("La réservation a été marquée comme venue. 🎉");
-    }
+  const handleVenue = async (id: number) => {
+    await markAsVenue(id);
+    toast.success("La réservation a été marquée comme venue. 🎉");
   };
   const handleDelete = (id: number) => {
     markAsDelete(id);

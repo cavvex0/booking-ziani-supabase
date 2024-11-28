@@ -13,7 +13,7 @@ type Props = {
   setDate: any;
   handleShowAll: () => void;
   filteredBookings: BookingSchemaTableType[];
-  handleVenue: (id: number, status: boolean) => void;
+  handleVenue: (id: number) => void;
   handleDelete: (id: number) => void;
 };
 

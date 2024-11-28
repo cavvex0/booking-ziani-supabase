@@ -4,9 +4,9 @@ import { createClient } from "@/utils/supabase/server";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
-export async function markAsVenue(id: number, status: boolean) {
+export async function markAsVenue(id: number) {
   const supabase = createClient();
-  await supabase.from("bookings").update({ status: !status }).eq("id", id);
+  await supabase.from("bookings").update({ status: true }).eq("id", id);
 
   const {
     data: { user },
@@ -15,13 +15,13 @@ export async function markAsVenue(id: number, status: boolean) {
     return redirect("/login");
   }
 
-  const { data: hotel } = await supabase
+  const { data } = await supabase
     .from("bookings")
-    .select("hotel")
+    .select("*")
     .eq("id", id)
     .single();
 
-  if (!hotel) {
+  if (!data.hotel) {
     return;
   }
 
@@ -35,15 +35,13 @@ export async function markAsVenue(id: number, status: boolean) {
     console.log(error);
     return;
   }
-  if (!status) {
-    profileData.forEach((profile) => {
-      sendPushNotification(
-        profile.push_token,
-        hotel,
-        user.user_metadata.username
-      );
-    });
-  }
+  profileData.forEach((profile) => {
+    sendPushNotification(
+      profile.push_token,
+      data.hotel,
+      user.user_metadata.username
+    );
+  });
 
   revalidatePath("/dashboard");
 }

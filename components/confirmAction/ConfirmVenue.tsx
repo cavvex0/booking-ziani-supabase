@@ -16,7 +16,7 @@ import { useMediaQuery } from "@/hooks/use-media-query";
 
 type Props = {
   item: BookingSchemaTableType;
-  handleVenue: (id: number, status: boolean) => void;
+  handleVenue: (id: number) => void;
 };
 const ConfirmVenue = ({ handleVenue, item }: Props) => {
   const isDesktop = useMediaQuery("(min-width: 768px)");
@@ -42,7 +42,7 @@ const ConfirmVenue = ({ handleVenue, item }: Props) => {
         <AlertDialogFooter>
           <AlertDialogCancel>Annuler</AlertDialogCancel>
           <AlertDialogAction
-            onClick={() => handleVenue(item.id, item.status)}
+            onClick={() => handleVenue(item.id)}
             className="bg-green-600 hover:bg-green-700"
           >
             Continuer
