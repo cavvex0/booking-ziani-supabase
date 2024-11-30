@@ -54,7 +54,7 @@ async function sendPushNotification(
   const message = {
     to: expoPushToken,
     sound: "default",
-    title: `${username.charAt(0).toUpperCase() + username.slice(1)} marqué | ${hotel.hotel} | comme venue`,
+    title: `${username.charAt(0).toUpperCase() + username.slice(1)} marqué | ${hotel} | comme venue`,
     body: ``,
     data: { someData: "goes here" },
   };
