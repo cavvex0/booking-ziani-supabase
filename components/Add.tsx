@@ -39,6 +39,7 @@ import { useRouter } from "next/navigation";
 const people = ["adam", "hannan", "soraya", "fija", "yassine", "amine"];
 
 const Add = () => {
+  const [disable, setDisable] = useState(false);
   const router = useRouter();
   const [username, setUsername] = useState<string | null>(null);
 
@@ -79,14 +80,19 @@ const Add = () => {
   });
 
   const onSubmit = async (values: any) => {
-    const supabase = createClient();
-    const {
-      data: { user },
-    } = await supabase.auth.getUser();
-    if (!user) {
-      return router.push("/login");
+    try {
+      setDisable(true);
+      const supabase = createClient();
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
+      if (!user) {
+        return router.push("/login");
+      }
+      mutate(values);
+    } finally {
+      setDisable(true);
     }
-    mutate(values);
   };
 
   return (
@@ -152,7 +158,7 @@ const Add = () => {
                   })}
                 </SelectContent>
               </Select>
-              <Button className="w-[48%] lg:w-[49%]" disabled={isPending}>
+              <Button className="w-[48%] lg:w-[49%]" disabled={disable}>
                 {isPending ? "En cours..." : "Ajouter"}
               </Button>
             </form>
