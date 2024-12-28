@@ -35,6 +35,7 @@ export const EditSchemaTable = z.object({
   people: z.string(),
   details: z.string(),
   date: z.date(),
+  createdBy: z.string(),
 });
 
 export type EditBookingSchemaType = z.infer<typeof EditSchemaTable>;

@@ -54,6 +54,7 @@ const EditBooking = ({ item }: Props) => {
       soin: item.soin,
       people: item.people,
       details: item.details,
+      createdBy: item.createdBy,
     },
   });
 
@@ -65,6 +66,9 @@ const EditBooking = ({ item }: Props) => {
       setOpen(false);
       toast.success("Mis à jour avec succès 🎉");
       router.refresh();
+    },
+    onError: (error) => {
+      toast.error("Vous n'êtes pas autorisé à modifier cette réservation");
     },
   });
 
