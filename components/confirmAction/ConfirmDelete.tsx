@@ -15,7 +15,7 @@ import { BookingSchemaTableType } from "@/schema/bookings";
 import { useMediaQuery } from "@/hooks/use-media-query";
 
 type Props = {
-  handleDelete: (id: number) => void;
+  handleDelete: (id: number , createdBy:string) => void;
   item: BookingSchemaTableType;
 };
 
@@ -42,7 +42,7 @@ function ConfirmDelete({ handleDelete, item }: Props) {
         <AlertDialogFooter>
           <AlertDialogCancel>Annuler</AlertDialogCancel>
           <AlertDialogAction
-            onClick={() => handleDelete(item.id)}
+            onClick={() => handleDelete(item.id , item.createdBy)}
             className="bg-red-500 hover:bg-red-600"
           >
             Continuer

@@ -36,9 +36,17 @@ const BookingTable = ({ bookings }: { bookings: BookingSchemaTableType[] }) => {
     await markAsVenue(id);
     toast.success("La réservation a été marquée comme venue. 🎉");
   };
-  const handleDelete = (id: number) => {
-    markAsDelete(id);
-    toast.success("Réservation supprimée avec succès 🎉");
+  const handleDelete = async (id: number, createdBy: string) => {
+    try {
+      const data = await markAsDelete(id, createdBy);
+      if (data instanceof Error) {
+        toast.error(data.message);
+      } else {
+        toast.success("Réservation supprimée avec succès 🎉");
+      }
+    } catch (error) {
+      toast.error("Vous n'êtes pas autorisé à supprimer cette réservation");
+    }
   };
 
   if (isDesktop) {

@@ -14,7 +14,7 @@ type Props = {
   handleShowAll: () => void;
   filteredBookings: BookingSchemaTableType[];
   handleVenue: (id: number) => void;
-  handleDelete: (id: number) => void;
+  handleDelete: (id: number, createdBy: string) => void;
 };
 
 const TableMobile = ({
