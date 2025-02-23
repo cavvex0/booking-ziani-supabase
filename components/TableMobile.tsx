@@ -92,7 +92,7 @@ const TableMobile = ({
                     ) : (
                       <div>
                         <h1 className="capitalize  text-[15px]">
-                          {format(new Date(item.date), "yyyy-MM-dd")}
+                          {format(new Date(item.datee), "yyyy-MM-dd")}
                         </h1>
                       </div>
                     )}
@@ -107,7 +107,7 @@ const TableMobile = ({
                       </h1>
                     ) : (
                       <h1 className="capitalize  text-[15px]">
-                        {format(new Date(item.date), "HH:mm")}
+                        {format(new Date(item.datee), "HH:mm")}
                       </h1>
                     )}
                   </div>

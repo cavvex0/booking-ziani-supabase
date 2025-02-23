@@ -107,9 +107,9 @@ const BookingTable = ({ bookings }: { bookings: BookingSchemaTableType[] }) => {
             <TableDiv>{item.people}</TableDiv>
             <TableDiv>{item.details}</TableDiv>
             <TableDiv>
-              <div>{format(new Date(item.date), "dd/MM/yyyy")}</div>
+                <div>{format(new Date(item.datee), "dd-MM-yyyy")}</div>
             </TableDiv>
-            <TableDiv>{format(new Date(item.date), "HH:mm")}</TableDiv>
+            <TableDiv>{format(new Date(item.datee), "HH:mm")}</TableDiv>
             <TableDiv>
               {item.status ? (
                 <span className="bg-green-300 text-green-800 text-[15px] leading-[20px] px-4 py-1 rounded font-jockey">
