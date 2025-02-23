@@ -40,7 +40,9 @@ type Props = {
 
 const EditBooking = ({ item }: Props) => {
   const router = useRouter();
-  const [date, setDate] = useState<Date | null>(new Date(item.date));
+  const [date, setDate] = useState<Date | null>(
+    item.datee ? parse(item.datee, "yyyy-MM-dd HH:mm", new Date()) : new Date()
+  );
   const [open, setOpen] = useState(false);
   const isDesktop = useMediaQuery("(min-width: 768px)");
 
@@ -55,6 +57,7 @@ const EditBooking = ({ item }: Props) => {
       people: item.people,
       details: item.details,
       createdBy: item.createdBy,
+      datee: item.datee,
     },
   });
 
@@ -150,8 +153,9 @@ type DateProps = {
 
 function DatePicker({ form, date, setDate }: DateProps) {
   useEffect(() => {
-    form.setValue("date", date);
+    form.setValue("datee", format(date, "yyyy-MM-dd HH:mm"));
   }, [form, date]);
+
   return (
     <Popover>
       <PopoverTrigger asChild>

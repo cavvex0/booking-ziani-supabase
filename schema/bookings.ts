@@ -11,6 +11,7 @@ export const BookingSchema = z.object({
   details: z.string(),
   deleted: z.boolean().default(false),
   date: z.date(),
+  datee: z.string().optional(),
   person: z.string(),
 });
 export const BookingSchemaTable = z.object({
@@ -26,6 +27,7 @@ export const BookingSchemaTable = z.object({
   date: z.date(),
   person: z.string(),
   created_at: z.date(),
+  datee: z.string(),
 });
 export const EditSchemaTable = z.object({
   id: z.number(),
@@ -35,6 +37,7 @@ export const EditSchemaTable = z.object({
   people: z.string(),
   details: z.string(),
   date: z.date(),
+  datee: z.string().optional(),
   createdBy: z.string(),
 });
 

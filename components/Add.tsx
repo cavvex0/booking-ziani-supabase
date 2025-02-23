@@ -65,6 +65,7 @@ const Add = () => {
       status: false,
       deleted: false,
       createdBy: username || "",
+      datee: "",
     },
   });
 
@@ -79,6 +80,10 @@ const Add = () => {
     },
   });
 
+  useEffect(() => {
+    form.setValue("datee", format(form.getValues("date"), "yyyy-MM-dd HH:mm"));
+  }, [form.watch("date")]);
+
   const onSubmit = async (values: any) => {
     try {
       setDisable(true);
@@ -91,7 +96,7 @@ const Add = () => {
       }
       mutate(values);
     } finally {
-      setDisable(true);
+      setDisable(false);
     }
   };
 
