@@ -10,7 +10,7 @@ const Dashboard = async () => {
   const { data: bookings } = await supabase
     .from("bookings")
     .select("*")
-    .order("date", { ascending: true })
+    .order("datee", { ascending: true })
     .neq("deleted", true);
 
   if (!bookings) {

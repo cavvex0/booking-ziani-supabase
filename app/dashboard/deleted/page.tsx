@@ -10,7 +10,7 @@ async function Deleted() {
     .from("bookings")
     .select("*")
     .eq("deleted", true)
-    .order("date", { ascending: true });
+    .order("datee", { ascending: true });
 
   if (!data) {
     return null;

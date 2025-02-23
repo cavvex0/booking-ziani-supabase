@@ -190,7 +190,7 @@ function DatePicker({ form, date, setDate }: DateProps) {
               setDate={(newDate) => {
                 setDate(newDate);
                 if (newDate) {
-                  form.setValue("date", newDate);
+                  form.setValue("datee", newDate);
                 }
               }}
             />

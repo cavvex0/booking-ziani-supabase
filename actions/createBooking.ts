@@ -46,7 +46,7 @@ async function sendPushNotification(
     sound: "default",
     title: `${username.charAt(0).toUpperCase() + username.slice(1)} ajout d'une nouvelle réservation`,
     body: `Soin: ${booking.soin || "Vide!"} , Date: ${format(
-      booking.date,
+      booking.datee,
       "dd/MM/yyyy HH:mm"
     )}, Personnes: ${booking.people} , Details: ${booking.details || "Vide!"}`,
     data: { someData: "goes here" },
