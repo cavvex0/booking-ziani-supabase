@@ -20,7 +20,7 @@ const BookingTable = ({ bookings }: { bookings: BookingSchemaTableType[] }) => {
   const filteredBookings = date
     ? bookings.filter(
         (item) =>
-          format(new Date(item.date), "yyyy-MM-dd") ===
+          format(new Date(item.datee), "yyyy-MM-dd") ===
           format(new Date(date), "yyyy-MM-dd")
       )
     : bookings;

@@ -71,9 +71,9 @@ const DeletedPage = ({ bookings }: { bookings: BookingSchemaTableType[] }) => {
                 <TableDiv>{item.people}</TableDiv>
                 <TableDiv>{item.details}</TableDiv>
                 <TableDiv>
-                  <div>{format(new Date(item.date), "dd/MM/yyyy")}</div>
+                  <div>{format(new Date(item.datee), "dd/MM/yyyy")}</div>
                 </TableDiv>
-                <TableDiv>{format(new Date(item.date), "HH:mm")}</TableDiv>
+                <TableDiv>{format(new Date(item.datee), "HH:mm")}</TableDiv>
                 <TableDiv>
                   {item.status ? (
                     <span className="bg-green-300 text-green-800 text-[15px] leading-[20px] px-4 py-1 rounded font-jockey">
@@ -137,10 +137,10 @@ const DeletedPage = ({ bookings }: { bookings: BookingSchemaTableType[] }) => {
                 </div>
                 <div className="p-3 flex flex-row items-center justify-between">
                   <h1 className="capitalize  text-[15px]">
-                    {format(new Date(item.date), "yyyy-MM-dd")}
+                    {format(new Date(item.datee), "yyyy-MM-dd")}
                   </h1>
                   <h1 className="capitalize  text-[15px]">
-                    {format(new Date(item.date), "HH:mm")}
+                    {format(new Date(item.datee), "HH:mm")}
                   </h1>
                   <div>
                     {item.status ? (
