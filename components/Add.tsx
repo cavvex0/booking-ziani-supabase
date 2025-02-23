@@ -56,7 +56,6 @@ const Add = () => {
     resolver: zodResolver(BookingSchema),
     defaultValues: {
       hotel: "",
-      date: new Date(),
       person: username || "",
       reception: "",
       soin: "",
@@ -79,10 +78,6 @@ const Add = () => {
       toast.success("Réservation créée avec succès 🎉");
     },
   });
-
-  useEffect(() => {
-    form.setValue("datee", format(form.getValues("date"), "yyyy-MM-dd HH:mm"));
-  }, [form.watch("date")]);
 
   const onSubmit = async (values: any) => {
     try {
@@ -179,6 +174,10 @@ export default Add;
 function DatePicker({ form }: { form: any }) {
   const [date, setDate] = useState<Date | undefined>(new Date());
 
+  useEffect(() => {
+    if (date) form.setValue("datee", format(date, "yyyy-MM-dd HH:mm"));
+  }, [form, date]);
+
   return (
     <Popover>
       <PopoverTrigger asChild>
@@ -202,7 +201,10 @@ function DatePicker({ form }: { form: any }) {
             onSelect={(selectedDate: Date | undefined) => {
               setDate(selectedDate);
               if (selectedDate) {
-                form.setValue("date", selectedDate);
+                form.setValue(
+                  "datee",
+                  format(selectedDate, "yyyy-MM-dd HH:mm")
+                );
               }
             }}
           />

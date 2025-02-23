@@ -10,7 +10,6 @@ export const BookingSchema = z.object({
   status: z.boolean().default(false),
   details: z.string(),
   deleted: z.boolean().default(false),
-  date: z.date(),
   datee: z.string().optional(),
   person: z.string(),
 });
@@ -24,7 +23,6 @@ export const BookingSchemaTable = z.object({
   status: z.boolean().default(false),
   details: z.string(),
   deleted: z.boolean().default(false),
-  date: z.date(),
   person: z.string(),
   created_at: z.date(),
   datee: z.string(),
@@ -36,7 +34,6 @@ export const EditSchemaTable = z.object({
   soin: z.string(),
   people: z.string(),
   details: z.string(),
-  date: z.date(),
   datee: z.string().optional(),
   createdBy: z.string(),
 });

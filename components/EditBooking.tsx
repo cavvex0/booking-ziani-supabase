@@ -51,7 +51,6 @@ const EditBooking = ({ item }: Props) => {
     defaultValues: {
       id: item.id,
       hotel: item.hotel,
-      date: item.date,
       reception: item.reception,
       soin: item.soin,
       people: item.people,
@@ -154,8 +153,7 @@ type DateProps = {
 function DatePicker({ form, date, setDate }: DateProps) {
   useEffect(() => {
     form.setValue("datee", format(date, "yyyy-MM-dd HH:mm"));
-  }, [form, date]);
-
+  }, [date, form]);
   return (
     <Popover>
       <PopoverTrigger asChild>
@@ -179,7 +177,10 @@ function DatePicker({ form, date, setDate }: DateProps) {
             onSelect={(selectedDate: Date | undefined) => {
               setDate(selectedDate);
               if (selectedDate) {
-                form.setValue("date", selectedDate);
+                form.setValue(
+                  "datee",
+                  format(selectedDate, "yyyy-MM-dd HH:mm")
+                );
               }
             }}
           />
